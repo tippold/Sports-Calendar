@@ -1,20 +1,24 @@
 <?php
 
-class Event extends mySqlConnection
+class Event
 {
-    private $id = "";
-    private $sql_connection;
+    private $id = '';
+    public $date = '';
+    public $time = '';
+    public $home_team = '';
+    public $home_team_code = '';
+    public $away_team = '';
+    public $away_team_code = '';
 
     public function __construct()
     {
-        $this->sql_connection = new mySqlConnection();
     }
 
     public function save()
     {
-        $sql = "INSERT INTO `country` (`id`, `country_name`, `country_code`) VALUES (NULL, 'Österreich', 'AUT')";
+        /*$sql = "INSERT INTO `country` (`id`, `country_name`, `country_code`) VALUES (NULL, 'Österreich', 'AUT')";
         $entry = $this->sql_connection->connect()->prepare($sql);
-        $entry->execute();
+        $entry->execute();*/
     }
 
     public static function loadEventsByMonth($year, $month)
@@ -31,11 +35,25 @@ class Event extends mySqlConnection
                 WHERE event.date BETWEEN ' . $startdate .' AND ' . $enddate. ' 
                 ORDER BY event.date ASC';
 
-        $ergebnis = $sql_connection->connect()->prepare($sql);
-        $ergebnis->execute();
+        $statement = $sql_connection->connect()->prepare($sql);
+        $statement->execute();
+        $ergebnis = $statement->fetchAll();
 
-        $string = $ergebnis->fetchAll();
+        $allEvents = [];
+        foreach($ergebnis as $row)
+        {
+            $event = new Event();
+            $event->id = $row['id'];
+            $event->date = $row['date'];
+            $event->time = $row['start_time'];
+            $event->home_team = $row['home_team_name'];
+            $event->home_team_code = $row['home_team_code'];
+            $event->away_team = $row['away_team_name'];
+            $event->away_team_code = $row['away_team_code'];
 
-        return $string;
+            array_push($allEvents, $event);
+        }
+
+        return $allEvents;
     }
 }

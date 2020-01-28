@@ -3,7 +3,7 @@
 class Calendar
 {
     protected $controller ='calendarController';
-    protected $action = 'index';
+    protected $action = 'show';
     protected $parameters = [];
 
     public function __construct()

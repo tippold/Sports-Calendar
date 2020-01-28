@@ -20,17 +20,15 @@
             echo '<div class="calendar_griditem"></div>';
         }
 
-        for($i = 1; $i <= $this->view_data['numberOfDays']; $i++)
+        foreach($this->view_data['days'] as $day => $events)
         {
-            echo '<div class="calendar_griditem"><b>'.$i.'</b>';
+            echo '<div class="calendar_griditem"><b>'.date('j',strtotime($day)).'</b><br>';
 
-            if(true)
+            foreach($events as $event)
             {
-
+                echo '<br>'.substr_replace($event->time, "", -3).' '.$event->home_team_code.' - '.$event->away_team_code;
             }
-
             echo '</div>';
         }
     ?>
-
 </div>
