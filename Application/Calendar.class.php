@@ -29,7 +29,7 @@ class Calendar
 
     protected function prepareURL()
     {
-        $request = str_replace('/sportradar','',$_SERVER['REQUEST_URI']);
+        $request = ltrim($_SERVER['REQUEST_URI'],'/sportradar');
         $request = trim($request,'/');
 
         if(!empty($request))
@@ -40,7 +40,6 @@ class Calendar
 
             unset($url[0],$url[1]);
             $this->parameters = !empty($url) ? array_values($url) : [];
-            //var_dump($this->parameters);
         }
     }
 }

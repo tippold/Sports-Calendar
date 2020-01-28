@@ -1,6 +1,7 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
+setlocale(LC_TIME, "de_DE");
 
 require_once('db_credentials.inc.php');
 
@@ -9,6 +10,7 @@ define('MODEL', ROOT . 'model' . DIRECTORY_SEPARATOR);
 define('VIEW', ROOT . 'view' . DIRECTORY_SEPARATOR);
 define('CONTROLLER', ROOT . 'controller' . DIRECTORY_SEPARATOR);
 define('CLASSES', ROOT . 'classes' . DIRECTORY_SEPARATOR);
+define('CSS', 'https://tippold.com/sportradar/css' . DIRECTORY_SEPARATOR);
 
 spl_autoload_register(function ($classname){
 
