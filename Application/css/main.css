@@ -49,3 +49,55 @@ html, body {
 #filterbox{
     padding-left: 10px;
 }
+
+#sidebar {
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+
+    background-color: #00003E;
+    color: white;
+
+    padding-top: 20px;
+    overflow:hidden;
+}
+
+#contentcontainer{
+    width: 80%;
+    margin-left: 80px;
+    padding: 0px 10px;
+}
+
+nav li {
+    vertical-align: middle;
+    align-items: center;
+    text-align: center;
+    display: block;
+
+
+    list-style-type: none;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+nav li:hover {
+    color: #F60000;
+    background-color: #223254;
+}
+
+nav {
+    margin-top: 9em;
+}
+
+nav ul {
+    margin:0;
+    padding:0;
+}
+
+nav a:visited, nav a {
+    color:white;
+}
