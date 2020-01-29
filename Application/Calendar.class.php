@@ -3,7 +3,7 @@
 class Calendar
 {
     protected $controller ='calendarController';
-    protected $action = 'show';
+    protected $action = 'index';
     protected $parameters = [];
 
     public function __construct()
@@ -17,14 +17,18 @@ class Calendar
             if(method_exists($this->controller,$this->action))
             {
                 call_user_func_array([$this->controller,$this->action],$this->parameters);
+            } else {
+                $this->action ='index';
+                $this->parameters = [];
+                call_user_func_array([$this->controller,$this->action],$this->parameters);
             }
         }
-        /*else{
+        else{
             $this->controller = new calendarController;
             $this->action = 'index';
             $this->parameters = [];
             call_user_func_array([$this->controller,$this->action],$this->parameters);
-        }*/
+        }
     }
 
     protected function prepareURL()

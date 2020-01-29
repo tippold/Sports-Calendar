@@ -1,9 +1,15 @@
+<div id="headerbox">
+    <h1>Calendar</h1>
 
-<h1>Calendar</h1>
+    <h2>
+        <?= date("F", $this->view_data['keydate']) ." ". date("Y", $this->view_data['keydate']); ?>
+    </h2>
+    <p>
+        <a href="/sportradar/calendar/show/<?=date('Y',strtotime($this->view_data['prev_month'])) ."/".date('n',strtotime($this->view_data['prev_month'])); ?>">Previous</a>
+        <a href="/sportradar/calendar/show/<?=date('Y',strtotime($this->view_data['next_month'])) ."/".date('n',strtotime($this->view_data['next_month'])); ?>">Next</a>
+    </p>
+</div>
 
-<h2>
-    <?= $this->view_data['month'] ." ". $this->view_data['year']; ?>
-</h2>
 
 <div class="calendar_grid">
     <div class="calendar_head">Mo</div>
@@ -15,7 +21,7 @@
     <div class="calendar_head">Sun</div>
 
     <?php
-        for($i = 0; $i < $this->view_data['emptyDays']; $i++)
+        for($i = 0; $i < date('N',$this->view_data['keydate']) - 1; $i++)
         {
             echo '<div class="calendar_griditem"></div>';
         }
@@ -26,9 +32,36 @@
 
             foreach($events as $event)
             {
-                echo '<br>'.substr_replace($event->time, "", -3).' '.$event->home_team_code.' - '.$event->away_team_code;
+                echo '<br>'.substr_replace($event->start_time, "", -3).' '.$event->home_team_code.' - '.$event->away_team_code;
             }
             echo '</div>';
         }
     ?>
 </div>
+
+<div id="filterbox">
+    Filter:
+    <form action="/sportradar/calendar/show/<?= date('Y', $this->view_data['keydate'])."/".date('n', $this->view_data['keydate']); ?>" method="POST">
+
+        <select name="sport_filter" onchange="this.form.submit()">
+
+            <option value="">-- Filter by sport --</option>
+            <option value="">ALL</option>
+
+            <?php foreach($this->view_data['sports'] as $id => $sport) {?>
+
+                <option value="<?=$id?>" <?php if($id == $this->view_data['sport_filter']) echo 'selected'?>><?= $sport['sport_name']; ?></option>
+
+            <?php } ?>
+
+        </select>
+    </form>
+</div>
+
+<?php
+
+    /*$sports = Sport::loadAllSports();
+    echo '<pre>';
+    print_r($sports);
+    echo '</pre>';*/
+?>
