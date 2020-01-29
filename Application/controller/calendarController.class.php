@@ -48,7 +48,7 @@ class calendarController extends Controller
             $this->keydate = mktime(0,0,0,$month,1,$year);
         }
 
-        // determines first and last day of month
+        // Determines first and last day of month
         $firstday = date("Y-m-d", $this->keydate);
         $lastday = date("Y-m-t",$this->keydate);
 

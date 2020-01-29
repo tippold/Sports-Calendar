@@ -55,10 +55,3 @@
         </select>
     </form>
 </div>
-
-<?php
-    /*$sports = Sport::loadAllSports();
-    echo '<pre>';
-    print_r($sports);
-    echo '</pre>';*/
-?>
