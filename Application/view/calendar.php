@@ -10,7 +10,6 @@
     </p>
 </div>
 
-
 <div class="calendar_grid">
     <div class="calendar_head">Mo</div>
     <div class="calendar_head">Tue</div>
@@ -40,12 +39,11 @@
 </div>
 
 <div id="filterbox">
-    Filter:
     <form action="/sportradar/calendar/show/<?= date('Y', $this->view_data['keydate'])."/".date('n', $this->view_data['keydate']); ?>" method="POST">
+        <label for="filter">Filter:</label>
+        <select id="filter" name="sport_filter" onchange="this.form.submit()">
 
-        <select name="sport_filter" onchange="this.form.submit()">
-
-            <option value="">-- Filter by sport --</option>
+            <option value="">-- select sport --</option>
             <option value="">ALL</option>
 
             <?php foreach($this->view_data['sports'] as $id => $sport) {?>
@@ -59,7 +57,6 @@
 </div>
 
 <?php
-
     /*$sports = Sport::loadAllSports();
     echo '<pre>';
     print_r($sports);
