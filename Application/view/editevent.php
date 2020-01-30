@@ -1,5 +1,6 @@
 <h1><?php echo !empty($this->view_data['event']) ? 'Edit Event' : 'Add Event'; ?></h1>
 
+<div id="editform">
 <form action="/sportradar/event/edit/" method="POST">
     <?php
         if(!empty($this->view_data['event']))
@@ -52,5 +53,6 @@
         ?>
     </select><br>
 
-    <input type="submit" value="Speichern">
+    <input type="submit" value="<?php echo !empty($this->view_data['event']) ? 'Update' : 'Save'; ?>">
 </form>
+</div>

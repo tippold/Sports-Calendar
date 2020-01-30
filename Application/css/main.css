@@ -2,36 +2,66 @@ html, body {
     margin: 0;
     padding: 0;
 
-    font-family: Arial;
+    /*font-family: Arial;*/
+    font-family: 'Karla', sans-serif;
 }
 
 .calendar_grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 25px;
+    grid-column-gap: 5px;
     grid-row-gap: 5px;
 
-    width: 90%;
-    margin: 0 auto 0 10px;
+    width: 100%;
 }
 
 .calendar_griditem {
     width: 100%;
+    min-width: 137px;
     height: 120px;
     border: 1px solid black;
 
     padding: 10px;
 
     text-align: right;
+    box-sizing: border-box;
+}
+
+.griditem_empty{
+    border: 0px;
+    background: repeating-linear-gradient(
+            135deg,
+            #f7f7f7,
+            #f7f7f7 10px,
+            #e2e2e2 10px,
+            #e2e2e2 20px
+    );
 }
 
 .calendar_head {
     width: 100%;
-
-    padding: 0px 10px 0px 10px;
+    padding-right: 10px;
 
     font-weight: bold;
     text-align: right;
+    box-sizing: border-box;
+}
+.month_nav{
+    display: flex;
+    width:100%;
+    min-width: 989px;
+    justify-content: space-between;
+
+    margin-bottom: 1em;
+}
+
+.month_nav a:hover {
+    color: #F60000;
+}
+
+a, a:visited {
+    color: black;
+    text-decoration: none;
 }
 
 .no-border{
@@ -39,10 +69,7 @@ html, body {
 }
 
 #headerbox {
-    margin-left: auto;
-    margin-right: auto;
-    width: 20em;
-
+    width: 100%;
     text-align: center;
 }
 
@@ -57,7 +84,6 @@ html, body {
     z-index: 1;
     top: 0;
     left: 0;
-    overflow-x: hidden;
 
     background-color: #00003E;
     color: white;
@@ -90,7 +116,7 @@ nav li:hover {
 }
 
 nav {
-    margin-top: 9em;
+    margin-top: 1em;
 }
 
 nav ul {
@@ -100,4 +126,34 @@ nav ul {
 
 nav a:visited, nav a {
     color:white;
+}
+
+.event_listing {
+    margin-top: 4px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.event_listing:hover {
+    background-color: #e2e2e2;
+}
+
+.event_time {
+    font-style: italic;
+}
+
+#editform {
+    width: 20em;
+}
+
+#editform form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+input[type="date"], input[type="time"] {
+    font-size: 1em;
 }
