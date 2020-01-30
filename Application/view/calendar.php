@@ -48,7 +48,7 @@
 
             foreach($events as $event)
             {
-                echo '<div class="event_listing">';
+                echo '<div class="event_listing" data-eventid="'. $event->getId() .'">';
                     echo '<div class="event_time">' . substr_replace($event->start_time, "", -3) . '</div>';
                     echo '<div class="event_teams">' . $event->home_team_code.' - '.$event->away_team_code . '</div>';
                 echo '</div>';
@@ -56,4 +56,12 @@
             echo '</div>';
         }
     ?>
+</div>
+<div id="eventdetail-backdrop"></div>
+<div id="eventdetail">
+    <div class="align-right" id="eventdetail_close"><i class="fas fa-times"></i></div onclick="">
+    <h3></h3>
+    <div class="sport"></div>
+    <div class="date"></div>
+    <div class="time"></div>
 </div>

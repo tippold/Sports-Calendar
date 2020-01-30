@@ -9,22 +9,24 @@ html, body {
 .calendar_grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 
     width: 100%;
 }
 
 .calendar_griditem {
     width: 100%;
-    min-width: 137px;
+    min-width: 143px;
     height: 120px;
-    border: 1px solid black;
+    border: 0px solid black;
 
     padding: 10px;
 
     text-align: right;
     box-sizing: border-box;
+
+    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.6);
 }
 
 .griditem_empty{
@@ -49,7 +51,7 @@ html, body {
 .month_nav{
     display: flex;
     width:100%;
-    min-width: 989px;
+    min-width: 1060px;
     justify-content: space-between;
 
     margin-bottom: 1em;
@@ -70,7 +72,7 @@ a, a:visited {
 
 #headerbox {
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 #filterbox{
@@ -94,7 +96,8 @@ a, a:visited {
 
 #contentcontainer{
     width: 80%;
-    margin-left: 80px;
+    margin-left: 90px;
+    margin-bottom: 5em;
     padding: 0px 10px;
 }
 
@@ -130,14 +133,19 @@ nav a:visited, nav a {
 
 .event_listing {
     margin-top: 4px;
+    border-radius: 7px;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    padding: 0px 4px 0px 4px;
 }
 
 .event_listing:hover {
-    background-color: #e2e2e2;
+    background-color: /*#e2e2e2*/#F60000;
+    color: white;
+    cursor: pointer;
 }
 
 .event_time {
@@ -151,9 +159,49 @@ nav a:visited, nav a {
 #editform form {
     display: flex;
     flex-direction: column;
-
 }
 
 input[type="date"], input[type="time"] {
     font-size: 1em;
+}
+
+#eventdetail {
+    display: none;
+    width: 30em;
+    padding: 10px 25px 20px 25px;
+
+    border-radius: 10px;
+    line-height: 1.5em;
+
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+#eventdetail-backdrop{
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    width: calc(100vw - 80px);
+    background-color: rgba(0,0,0,0.2);
+    z-index: 9998;
+    backdrop-filter: blur(3px);
+    top: 0;
+    left: 80px;
+}
+
+#eventdetail h3 {
+    margin-top: 0;
+}
+
+#eventdetail_close:hover {
+    cursor: pointer;
+}
+
+.align-right{
+    text-align: right;
 }

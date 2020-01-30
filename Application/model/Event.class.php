@@ -60,7 +60,7 @@ class Event
         // Returns Single Event Object by Event ID
 
         $sql_connection = new mySqlConnection();
-        $sql = "SELECT event.id, event.date, start_time, team1.team_name AS home_team_name, team1.team_code AS home_team_code, team2.team_name AS away_team_name, team2.team_code AS away_team_code, sport_name, event._sport_id, event._venue_id
+        $sql = "SELECT event.id, event.date, start_time, team1.id AS _hometeam_id, team2.id AS _awayteam_id, team1.team_name AS home_team_name, team1.team_code AS home_team_code, team2.team_name AS away_team_name, team2.team_code AS away_team_code, sport_name, event._sport_id, event._venue_id
                 FROM event 
                 JOIN sport ON event._sport_id = sport.id
                 JOIN team AS team1 ON event._hometeam_id = team1.id
@@ -86,7 +86,7 @@ class Event
 
         // SQL statement
         $sql_connection = new mySqlConnection();
-        $sql = "SELECT event.id, event.date, start_time, team1.team_name AS home_team_name, team1.team_code AS home_team_code, team2.team_name AS away_team_name, team2.team_code AS away_team_code, sport.id, sport_name, event._sport_id, event._venue_id
+        $sql = "SELECT event.id AS id, event.date, start_time, team1.id AS _hometeam_id, team2.id AS _awayteam_id, team1.team_name AS home_team_name, team1.team_code AS home_team_code, team2.team_name AS away_team_name, team2.team_code AS away_team_code, sport_name, event._sport_id, event._venue_id
                 FROM event 
                 JOIN sport ON event._sport_id = sport.id
                 JOIN team AS team1 ON event._hometeam_id = team1.id

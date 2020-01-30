@@ -68,4 +68,15 @@ class eventController extends Controller
         $this->view->page_title = $event != null ? 'Edit Event' : 'Add Event';
         $this->view->render();
     }
+
+    public function eventdetail()
+    {
+        if(isset($_POST['eventid']) && !empty($_POST['eventid']))
+        {
+            $event = Event::loadEvent($_POST['eventid']);
+            $event->eventid = $_POST['eventid'];
+
+            echo json_encode($event);
+        }
+    }
 }

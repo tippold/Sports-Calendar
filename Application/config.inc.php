@@ -11,6 +11,7 @@ define('VIEW', ROOT . 'view' . DIRECTORY_SEPARATOR);
 define('CONTROLLER', ROOT . 'controller' . DIRECTORY_SEPARATOR);
 define('CLASSES', ROOT . 'classes' . DIRECTORY_SEPARATOR);
 define('CSS', 'https://tippold.com/sportradar/css' . DIRECTORY_SEPARATOR);
+define('JS', 'https://tippold.com/sportradar/js' . DIRECTORY_SEPARATOR);
 
 spl_autoload_register(function ($classname){
 

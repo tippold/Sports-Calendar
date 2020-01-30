@@ -6,6 +6,7 @@ class View
     protected $view_data;
     public $page_title = 'Please set a title';
     public $css_path = CSS . 'main.css';
+    public $js_path = '';
 
     public function __construct($view_file,$view_data)
     {

@@ -32,6 +32,7 @@ class calendarController extends Controller
         ]);
 
         $this->view->page_title = 'Calendar';
+        $this->view->js_path = JS . 'calendar.js';
         $this->view->render();
     }
 
