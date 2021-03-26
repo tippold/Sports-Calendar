@@ -24,7 +24,7 @@ class Calendar
             }
         }
         else{
-            $this->controller = new calendarController;
+            $this->controller = new calendarController();
             $this->action = 'index';
             $this->parameters = [];
             call_user_func_array([$this->controller,$this->action],$this->parameters);

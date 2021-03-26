@@ -13,7 +13,7 @@ class Event
 
     // Additional info (through MySQL join)
     public $home_team_name = '';
-    public $home_team_code ='';
+    public $home_team_code = '';
     public $away_team_name = '';
     public $away_team_code = '';
     public $sport_name = '';
@@ -28,12 +28,10 @@ class Event
         // If Event ID is set perform UPDATE - otherwise INSERT
 
         $insert = false;
-        if( !empty($this->id) )
-        {
+        if (!empty($this->id)) {
             // Edit Event
             $sql = "UPDATE event SET date = :date, start_time = :start_time, _hometeam_id = :hometeam_id, _awayteam_id = :awayteam_id, _sport_id = :sport_id, _venue_id = :venue_id WHERE event.id = :eventid";
-        }
-        else{
+        } else {
             // New Event
             $insert = true;
             $sql = 'INSERT INTO event (id, date, start_time, _hometeam_id, _awayteam_id, _sport_id, _venue_id) VALUES (NULL, :date, :start_time, :hometeam_id, :awayteam_id, :sport_id, :venue_id)';
@@ -48,7 +46,7 @@ class Event
         $eintrag->bindValue(":awayteam_id", $this->_awayteam_id);
         $eintrag->bindValue(":sport_id", $this->_sport_id);
         $eintrag->bindValue(":venue_id", NULL);
-        if( !empty($this->id) ) $eintrag->bindValue(":eventid",$this->id);
+        if (!empty($this->id)) $eintrag->bindValue(":eventid", $this->id);
 
         $eintrag->execute();
 
@@ -81,8 +79,8 @@ class Event
         //Returns array of all Events of specified month (sport filter optional)
 
         //Determine first and last day of month
-        $enddate = date('Y-m-d', mktime(0,0,0,$month + 1,0,$year) );
-        $startdate = date('Y-m-d', mktime(0,0,0,$month,1,$year) );
+        $enddate = date('Y-m-d', mktime(0, 0, 0, $month + 1, 0, $year));
+        $startdate = date('Y-m-d', mktime(0, 0, 0, $month, 1, $year));
 
         // SQL statement
         $sql_connection = new mySqlConnection();
@@ -94,8 +92,7 @@ class Event
                 WHERE event.date BETWEEN :startdate AND :enddate";
 
         // Add sport filter if specified
-        if(!empty($sport))
-        {
+        if (!empty($sport)) {
             $sql .= " AND _sport_id = :sport_id";
         }
         $sql .= " ORDER BY event.date ASC, event.start_time ASC";
@@ -103,9 +100,9 @@ class Event
         // Execute SQL query and return Event objects
         $statement = $sql_connection->connect()->prepare($sql);
         $statement->setFetchMode(PDO::FETCH_CLASS, 'Event');
-        $statement->bindValue(":startdate",$startdate);
-        $statement->bindValue(":enddate",$enddate);
-        if(!empty($sport)) $statement->bindValue(":sport_id", $sport);
+        $statement->bindValue(":startdate", $startdate);
+        $statement->bindValue(":enddate", $enddate);
+        if (!empty($sport)) $statement->bindValue(":sport_id", $sport);
         $statement->execute();
         $allEvents = $statement->fetchAll();
 
